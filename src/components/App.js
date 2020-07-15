@@ -28,12 +28,20 @@ export default class App extends React.Component {
     this.setState({ isAddPlacePopupOpen: true })
   }
 
+  closeAllPopups = () => {
+    this.setState({
+      isEditProfilePopupOpen: false,
+      isAddPlacePopupOpen: false,
+      isEditAvatarPopupOpen: false
+    })
+  }
+
   render() {
   return (
       <div className="page">
         <Header />
         <Main onEditProfile={this.handleEditProfileClick} onAddPlace={this.handleAddPlaceClick} onEditAvatar={this.handleEditAvatarClick}/>
-        <PopupWithForm title="Редактировать профиль" name="edit-profile" isOpened={this.state.isEditProfilePopupOpen} children={
+        <PopupWithForm title="Редактировать профиль" name="edit-profile" isOpened={this.state.isEditProfilePopupOpen} onClose={this.closeAllPopups} children={
           <>
           <input className="popup__input popup__input_type_name" name="name" type="text" id="name-input" required
                  minLength="2" maxLength="40" pattern="[a-zA-ZА-ЯЁа-яё\s\-]+[^\s\-]+" />
@@ -44,7 +52,7 @@ export default class App extends React.Component {
           <span className='popup__input-error' id='description-input-error'></span>
           </>
         } />
-        <PopupWithForm title="Новое место" name="add-new-card" isOpened={this.state.isAddPlacePopupOpen} children={
+        <PopupWithForm title="Новое место" name="add-new-card" isOpened={this.state.isAddPlacePopupOpen} onClose={this.closeAllPopups} children={
           <>
             <input className="popup__input popup__input_type_name" name="name" type="text" id="card-name-input"
                    required
@@ -56,7 +64,7 @@ export default class App extends React.Component {
             <span className='popup__input-error' id='card-url-input-error'></span>
           </>
         } />
-        <PopupWithForm title="Обновить аватар" name="avatar-edit" isOpened={this.state.isEditAvatarPopupOpen} children={
+        <PopupWithForm title="Обновить аватар" name="avatar-edit" isOpened={this.state.isEditAvatarPopupOpen} onClose={this.closeAllPopups} children={
           <>
           <input className="popup__input popup__input_type_description" type="url" name="link" id="card-url-input"
                  required placeholder="Ссылка на картинку" pattern=".+\.(jpg|png)" />
