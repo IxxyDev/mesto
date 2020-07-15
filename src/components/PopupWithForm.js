@@ -6,7 +6,6 @@ export default class PopupWithForm extends React.Component {
   }
 
   render() {
-    console.log(this.props.onClose);
     return (
       <section className={this.props.isOpened ? `popup popup_type_${this.props.name} popup_is-opened` : `popup popup_type_${this.props.name}`}>
         <div className="popup__content">
