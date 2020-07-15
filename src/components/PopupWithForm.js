@@ -7,7 +7,7 @@ export default class PopupWithForm extends React.Component {
 
   render() {
     return (
-      <section className={`popup popup_type_${this.props.name}`}>
+      <section className={this.props.isOpened ? `popup popup_type_${this.props.name} popup_is-opened` : `popup popup_type_${this.props.name}`}>
         <div className="popup__content">
           <button className="popup__close-button popup__close-button_type_edit-profile" type="button"></button>
           <h3 className="popup__title">{this.props.title}</h3>
