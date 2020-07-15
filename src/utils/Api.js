@@ -26,7 +26,6 @@ class Api {
       .then(this._returnResponse)
       .then((res) => {
         this.mainId = res._id;
-        console.log(res);
         return res;
       });
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import cousteauPath from '../images/cousteau.jpg';
 import { api } from '../utils/Api';
+import Card from './Card';
 
 export default class Main extends React.Component {
   constructor(props) {
@@ -8,7 +9,8 @@ export default class Main extends React.Component {
     this.state = {
       userName: 'Жак-Ив Кусто',
       userDescription: 'Исселдователь океана',
-      userAvatar: cousteauPath
+      userAvatar: cousteauPath,
+      cards: []
     }
   }
 
@@ -21,11 +23,17 @@ export default class Main extends React.Component {
           userAvatar: user.avatar
         })
       })
+      .catch(err => console.error(err))
+
+    api.getInitialCards()
+      .then((cards) => {
+        this.setState({ cards })
+      })
+      .catch(err => console.error(err))
   }
 
 
   render() {
-    api.getUserInfo();
     return (
     <main className="main">
       <section className="profile">
@@ -44,6 +52,21 @@ export default class Main extends React.Component {
         <button className="profile__add-button" type="button" onClick={this.props.onAddPlace}></button>
       </section>
       <section className="elements">
+        {this.state.cards.map((card, i) =>
+          <div id="card" key={i}>
+            <div className="element">
+              <img src={card.link} alt={card.name} className="element__image" />
+              <div className="element__description">
+                <h2 className="element__title">{card.name}</h2>
+                <div className="element__like-container">
+                  <button type="submit" className="element__like-button"></button>
+                  <span className="element__like-counter">0</span>
+                </div>
+              </div>
+              <button type="submit" className="element__delete-button"></button>
+            </div>
+          </div>
+        )}
       </section>
     </main>
     );
