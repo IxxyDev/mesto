@@ -20,7 +20,7 @@ export default class Main extends React.Component {
         this.setState({
           userName: user.name,
           userDescription: user.about,
-          userAvatar: user.avatar
+          userAvatar: user.avatar,
         })
       })
       .catch(err => console.error(err))
@@ -53,19 +53,7 @@ export default class Main extends React.Component {
       </section>
       <section className="elements">
         {this.state.cards.map((card, i) =>
-          <div id="card" key={i}>
-            <div className="element">
-              <img src={card.link} alt={card.name} className="element__image" />
-              <div className="element__description">
-                <h2 className="element__title">{card.name}</h2>
-                <div className="element__like-container">
-                  <button type="submit" className="element__like-button"></button>
-                  <span className="element__like-counter">0</span>
-                </div>
-              </div>
-              <button type="submit" className="element__delete-button"></button>
-            </div>
-          </div>
+          <Card key={i} onCardClick={this.props.onCardClick} title={card.name} url={card.link}/>
         )}
       </section>
     </main>

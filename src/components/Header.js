@@ -2,9 +2,6 @@ import React from 'react';
 import logoPath from "../images/logo.svg";
 
 export default class Header extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
     <header className="header">

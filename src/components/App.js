@@ -6,14 +6,16 @@ import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 
-
+//Первый спринт – состояние и классовые компоненты, второй будет на хуках и функциональных компонентах
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isEditProfilePopupOpen: false,
       isAddPlacePopupOpen: false,
-      isEditAvatarPopupOpen: false
+      isEditAvatarPopupOpen: false,
+      isImagePopupOpen: false,
+      selectedCard: {},
     }
   }
 
@@ -29,11 +31,18 @@ export default class App extends React.Component {
     this.setState({ isAddPlacePopupOpen: true })
   }
 
+  handleCardClick = (card) => {
+    console.log(card);
+    this.setState({ selectedCard: card, isImagePopupOpen: true })
+  }
+
   closeAllPopups = () => {
     this.setState({
       isEditProfilePopupOpen: false,
       isAddPlacePopupOpen: false,
-      isEditAvatarPopupOpen: false
+      isEditAvatarPopupOpen: false,
+      isImagePopupOpen: false,
+      selectedCard: {},
     })
   }
 
@@ -41,7 +50,7 @@ export default class App extends React.Component {
   return (
       <div className="page">
         <Header />
-        <Main onEditProfile={this.handleEditProfileClick} onAddPlace={this.handleAddPlaceClick} onEditAvatar={this.handleEditAvatarClick}/>
+        <Main onEditProfile={this.handleEditProfileClick} onAddPlace={this.handleAddPlaceClick} onEditAvatar={this.handleEditAvatarClick} onCardClick={this.handleCardClick}/>
         <PopupWithForm title="Редактировать профиль" name="edit-profile" isOpened={this.state.isEditProfilePopupOpen} onClose={this.closeAllPopups} children={
           <>
           <input className="popup__input popup__input_type_name" name="name" type="text" id="name-input" required
@@ -73,7 +82,7 @@ export default class App extends React.Component {
           </>
         } />
         <PopupWithForm title="Вы уверены?" name="delete-card" />
-        <ImagePopup />
+        <ImagePopup card={this.state.selectedCard} onClose={this.closeAllPopups} isOpened={this.state.isImagePopupOpen} />
         <Footer />
       </div>
     );
