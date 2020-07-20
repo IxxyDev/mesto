@@ -6,7 +6,7 @@ import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 
-//Первый спринт – состояние и классовые компоненты, второй будет на хуках и функциональных компонентах
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);

@@ -34,26 +34,27 @@ export default class Main extends React.Component {
 
 
   render() {
+    const { onEditAvatar, onEditProfile, onAddPlace, onCardClick } = this.props;
     return (
     <main className="main">
       <section className="profile">
         <div className="profile__info">
-          <div className="profile__avatar-background" onClick={this.props.onEditAvatar}>
+          <div className="profile__avatar-background" onClick={onEditAvatar}>
             <img className="profile__avatar" src={this.state.userAvatar} alt=''/>
           </div>
           <div className="profile__data">
             <div className="profile__wrap">
               <h1 className="profile__name">{this.state.userName}</h1>
-              <button className="profile__edit-button" type="button" onClick={this.props.onEditProfile}></button>
+              <button className="profile__edit-button" type="button" onClick={onEditProfile}></button>
             </div>
             <p className="profile__description">{this.state.userDescription}</p>
           </div>
         </div>
-        <button className="profile__add-button" type="button" onClick={this.props.onAddPlace}></button>
+        <button className="profile__add-button" type="button" onClick={onAddPlace}></button>
       </section>
       <section className="elements">
         {this.state.cards.map((card, i) =>
-          <Card key={i} onCardClick={this.props.onCardClick} title={card.name} url={card.link}/>
+          <Card key={card._id} onCardClick={onCardClick} title={card.name} url={card.link} likes={card.likes.length}/>
         )}
       </section>
     </main>
