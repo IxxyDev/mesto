@@ -15,21 +15,16 @@ export default class Main extends React.Component {
   }
 
   componentDidMount() {
-    api.getUserInfo()
-      .then((user) => {
+    Promise.all([api.getUserInfo(), api.getInitialCards()])
+      .then(([user, cards]) => {
         this.setState({
           userName: user.name,
           userDescription: user.about,
           userAvatar: user.avatar,
+          cards,
         })
       })
-      .catch(err => console.error(err))
-
-    api.getInitialCards()
-      .then((cards) => {
-        this.setState({ cards })
-      })
-      .catch(err => console.error(err))
+      .catch((error) => console.error(error));
   }
 
 
