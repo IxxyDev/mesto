@@ -1,4 +1,4 @@
-# [Проект "mesto" на React.js](https://ixxydev.github.io/mesto)
+# Проект "mesto" на React.js
 
 ## Описание:
 Одностраничный фотохостинг на ReactJS. Подгружает фотографии, загруженные студентами, из API.
