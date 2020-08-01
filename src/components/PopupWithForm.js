@@ -1,10 +1,7 @@
 import React from 'react';
 
-export default class PopupWithForm extends React.Component {
-  render() {
-    const { name, isOpened, title, children, onClose } = this.props;
-
-    return (
+function PopupWithForm({ name, isOpened, title, children, onClose }) {
+  return (
       <section className={`popup popup_type_${name} ${isOpened && "popup_is-opened"}`}>
         <div className="popup__content">
           <button className="popup__close-button popup__close-button_type_edit-profile" onClick={onClose} type="button"></button>
@@ -15,6 +12,7 @@ export default class PopupWithForm extends React.Component {
           </form>
         </div>
       </section>
-    )
-  }
+  )
 }
+
+export default PopupWithForm;

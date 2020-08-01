@@ -1,9 +1,6 @@
 import React from 'react';
 
-export default class Card extends React.Component {
-  render() {
-    const { title, url, onCardClick, likes} = this.props;
-
+function Card({ title, url, onCardClick, likes}) {
     return (
       <div id="card">
         <div className="element">
@@ -13,8 +10,8 @@ export default class Card extends React.Component {
             className="element__image"
             onClick={() => {
               onCardClick({
-                title: this.props.title,
-                url: this.props.url,
+                title: title,
+                url: url,
               });
             }}
             />
@@ -29,5 +26,6 @@ export default class Card extends React.Component {
         </div>
       </div>
     );
-  }
 }
+
+export default Card;
