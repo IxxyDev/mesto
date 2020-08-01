@@ -5,6 +5,8 @@ import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
+import { api } from '../utils/Api';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 
 function App() {
@@ -14,6 +16,11 @@ function App() {
   const [isEditAvatarPopupOpen, setEditAvatarPopup] = React.useState(false);
   const [isImagePopupOpen, setImagePopup] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
+  const [currentUser, setCurrentUser] = React.useState({});
+
+  React.useEffect(() => {
+    api.getUserInfo().then(user => setCurrentUser(user)).catch(err => console.log(err));
+  })
 
   function handleEditAvatarClick() {
     setEditAvatarPopup(true);
@@ -41,6 +48,7 @@ function App() {
   }
 
   return (
+    <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <Header />
         <Main onEditProfile={handleEditProfileClick}
@@ -62,7 +70,7 @@ function App() {
                    id="description-input"
                    required minLength="2"
                    maxLength="200" />
-          <span className='popup__input-error' id='description-input-error'></span>
+            <span className='popup__input-error' id='description-input-error'></span>
           </>
         </PopupWithForm>
         <PopupWithForm title="Новое место"
@@ -106,6 +114,7 @@ function App() {
                     isOpened={isImagePopupOpen} />
         <Footer />
       </div>
+    </CurrentUserContext.Provider>
   );
 }
 
