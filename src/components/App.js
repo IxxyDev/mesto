@@ -18,6 +18,7 @@ function App() {
   const [selectedCard, setSelectedCard] = React.useState({});
   const [currentUser, setCurrentUser] = React.useState({});
 
+
   React.useEffect(() => {
     api.getUserInfo().then(user => setCurrentUser(user)).catch(err => console.log(err));
   })
