@@ -9,8 +9,8 @@ const EditProfilePopup = ({isOpened, onClose, onUpdateUser}) => {
   const [name, setName] = React.useState('');
   const [description, setDescription] = React.useState('');
 
-  const handleNameChange = (e) => setName(e.target.value)
-  const handleAboutChange = (e) => setDescription(e.target.value);
+  const handleNameChange = e => setName(e.target.value)
+  const handleAboutChange = e => setDescription(e.target.value);
 
 
   const handleSubmit = (e) => {

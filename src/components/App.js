@@ -58,7 +58,7 @@ function App() {
   }
 
   function handleUpdateUser(userData) {
-    api.changeUserInfo(userData.name, userData.about)
+    api.changeUserInfo(userData)
       .then((userInfo) => {
         setCurrentUser(userInfo);
         closeAllPopups();
@@ -67,7 +67,7 @@ function App() {
   }
 
   function handleAddPlace(cardData) {
-    api.addCard(cardData.name, cardData.link)
+    api.addCard(cardData)
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups()
@@ -128,12 +128,12 @@ function App() {
         <EditAvatarPopup
           onClose={closeAllPopups}
           isOpened={isEditAvatarPopupOpen}
-          onUpdateUser={handleUpdateAvatar}
+          onUpdateAvatar={handleUpdateAvatar}
         />
         <AddPlacePopup
           onClose={closeAllPopups}
           isOpened={isAddPlacePopupOpen}
-          onUpdateUser={handleAddPlace}
+          onAddPlace={handleAddPlace}
         />
         <PopupWithForm title="Вы уверены?" name="delete-card" btnText={'Да'} />
         <ImagePopup card={image}
