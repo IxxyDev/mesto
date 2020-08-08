@@ -33,28 +33,33 @@ const EditProfilePopup = ({isOpened, onClose, onUpdateUser}) => {
       isOpened={isOpened}
       onClose={onClose}
       onSubmit={handleSubmit}
-      >
-      <input className="popup__input popup__input_type_name"
-             defaultValue={name}
-             onChange={handleNameChange}
-             name="name"
-             type="text"
-             id="name-input"
-             required
-             minLength="2"
-             maxLength="40"
-             pattern="[a-zA-ZА-ЯЁа-яё\s\-]+[^\s\-]+" />
-      <span className='popup__input-error' id='name-input-error'></span>
-      <input className="popup__input popup__input_type_description"
-             defaultValue={description}
-             onChange={handleAboutChange}
-             name="description"
-             type="text"
-             id="description-input"
-             required minLength="2"
-             maxLength="200" />
-      <span className='popup__input-error' id='description-input-error'></span>
-    </PopupWithForm>
+      children={
+        <form className="popup__form popup__form_type_edit-profile"
+              name="form"
+              method="POST"
+              noValidate>
+          <input className="popup__input popup__input_type_name"
+                 defaultValue={name}
+                 onChange={handleNameChange}
+                 name="name"
+                 type="text"
+                 id="name-input"
+                 required
+                 minLength="2"
+                 maxLength="40"
+                 pattern="[a-zA-ZА-ЯЁа-яё\s\-]+[^\s\-]+" />
+          <span className='popup__input-error' id='name-input-error'></span>
+          <input className="popup__input popup__input_type_description"
+                 defaultValue={description}
+                 onChange={handleAboutChange}
+                 name="description"
+                 type="text"
+                 id="description-input"
+                 required minLength="2"
+                 maxLength="200" />
+          <span className='popup__input-error' id='description-input-error'></span>
+        </form>
+      } />
   );
 };
 

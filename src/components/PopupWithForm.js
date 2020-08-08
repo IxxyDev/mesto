@@ -9,7 +9,8 @@ function PopupWithForm({ name, isOpened, title, children, onClose, onSubmit }) {
             {children}
             <button
               className="popup__button popup__button_type_save"
-              type="submit">Сохранить</button>
+              type="submit"
+              onClick={onSubmit}>Сохранить</button>
         </div>
       </section>
   )
