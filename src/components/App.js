@@ -6,6 +6,8 @@ import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 import EditProfilePopup from './EditProfilePopup';
+import AddPlacePopup from './AddPlacePopup';
+import EditAvatarPopup from './EditAvatarPopup';
 import { api } from '../utils/Api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
@@ -135,27 +137,6 @@ function App() {
           isOpened={isAddPlacePopupOpenPopupOpen}
           onUpdateUser={handleAddPlace}
         />
-        <PopupWithForm title="Новое место"
-                       name="add-new-card"
-                       isOpened={isAddPlacePopupOpen}
-                       onClose={closeAllPopups}>
-          <>
-            <input className="popup__input popup__input_type_name"
-                   name="name" type="text" id="card-name-input"
-                   required
-                   minLength="1"
-                   maxLength="30"
-                   placeholder="Название места"/>
-            <span className='popup__input-error' id='card-name-input-error'></span>
-            <input className="popup__input popup__input_type_description"
-                   type="url" name="link"
-                   type="text"
-                   id="card-url-input"
-                   required placeholder="Ссылка на картинку"
-                   pattern=".+\.(jpg|png)"/>
-            <span className='popup__input-error' id='card-url-input-error'></span>
-          </>
-        </PopupWithForm>
         <PopupWithForm title="Вы уверены?" name="delete-card" btnText={'Да'} />
         <ImagePopup card={selectedCard}
                     onClose={closeAllPopups}

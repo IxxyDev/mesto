@@ -29,6 +29,7 @@ function EditAvatarPopup({ isOpened, onClose, onUpdateAvatar }) {
       onSubmit={handleSubmit}>
       <>
         <input className="popup__input popup__input_type_description"
+               ref={avatarRef}
                type="url"
                name="link"
                id="avatar-url-input"
@@ -40,3 +41,5 @@ function EditAvatarPopup({ isOpened, onClose, onUpdateAvatar }) {
     </PopupWithForm>
   )
 }
+
+export default EditAvatarPopup;

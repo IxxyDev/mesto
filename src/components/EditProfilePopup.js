@@ -31,7 +31,7 @@ const EditProfilePopup = ({isOpened, onClose, onUpdateUser}) => {
       title="Редактировать профиль"
       name="edit-profile"
       isOpened={isOpened}
-      onClose={handleClose}
+      onClose={onClose}
       onSubmit={handleSubmit}
       >
       <input className="popup__input popup__input_type_name"
