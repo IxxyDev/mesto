@@ -17,8 +17,7 @@ function App() {
   const [isEditProfilePopupOpen, setEditProfilePopup] = React.useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopup] = React.useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopup] = React.useState(false);
-  const [isImagePopupOpen, setImagePopup] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState({});
+  const [selectedCard, setSelectedCard] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
   const [image, setImage] = React.useState({
@@ -97,17 +96,16 @@ function App() {
     setAddPlacePopup(true);
   }
 
-  function handleCardClick(card) {
-    setSelectedCard(card);
-    setImagePopup(true);
+  function handleCardClick(props) {
+    setSelectedCard(true);
+    setImage({link: props.link, name: props.name});
   }
 
   function closeAllPopups () {
     setEditAvatarPopup(false);
     setEditProfilePopup(false);
     setAddPlacePopup(false);
-    setImagePopup(false);
-    setSelectedCard({});
+    setSelectedCard(false);
   }
 
   return (
@@ -134,13 +132,13 @@ function App() {
         />
         <AddPlacePopup
           onClose={closeAllPopups}
-          isOpened={isAddPlacePopupOpenPopupOpen}
+          isOpened={isAddPlacePopupOpen}
           onUpdateUser={handleAddPlace}
         />
         <PopupWithForm title="Вы уверены?" name="delete-card" btnText={'Да'} />
-        <ImagePopup card={selectedCard}
+        <ImagePopup card={image}
                     onClose={closeAllPopups}
-                    isOpened={isImagePopupOpen} />
+                    isOpened={selectedCard} />
         <Footer />
       </div>
     </CurrentUserContext.Provider>
