@@ -156,22 +156,6 @@ function App() {
             <span className='popup__input-error' id='card-url-input-error'></span>
           </>
         </PopupWithForm>
-        <PopupWithForm
-          title="Обновить аватар"
-          name="avatar-edit"
-          isOpened={isEditAvatarPopupOpen}
-          onClose={closeAllPopups}>
-          <>
-          <input className="popup__input popup__input_type_description"
-                 type="url"
-                 name="link"
-                 id="avatar-url-input"
-                 required
-                 placeholder="Ссылка на картинку"
-                 pattern=".+\.(jpg|png)" />
-            <span className='popup__input-error' id='avatar-url-input-error'></span>
-          </>
-        </PopupWithForm>
         <PopupWithForm title="Вы уверены?" name="delete-card" btnText={'Да'} />
         <ImagePopup card={selectedCard}
                     onClose={closeAllPopups}
