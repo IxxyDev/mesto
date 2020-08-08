@@ -3,10 +3,14 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 
 function Card({ card, onCardClick, onCardLike, onCardDelete}) {
-  const currentUser = React.useContext(CurrentUserContext);
 
+  const currentUser = React.useContext(CurrentUserContext);
   const isOwn = card.owner._id === currentUser._id;
-  const isLiked = card.likes.some(card => card._id === currentUser._id);
+
+
+  function handleClick() {
+    onCardClick(card);
+  }
 
   function handleLikeClick() {
     onCardLike(card);
@@ -23,12 +27,7 @@ function Card({ card, onCardClick, onCardLike, onCardDelete}) {
             src={card.link}
             alt={card.name}
             className="element__image"
-            onClick={() => {
-              onCardClick({
-                title: card.name,
-                url: card.link
-              });
-            }}
+            onClick={handleClick}
             />
           <div className="element__description">
             <h2 className="element__title">{card.name}</h2>

@@ -1,39 +1,10 @@
 import React from 'react';
-import cousteauPath from '../images/cousteau.jpg';
-import { api } from '../utils/Api';
 import Card from './Card';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
+function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick, onCardLike, onCardDelete, cards }) {
 
-  const [cards, setCards] = React.useState([]);
   const currentUser = React.useContext(CurrentUserContext);
-
-  function handleLikeCard(card) {
-    const isLiked = card.likes.some(item => item._id === currentUser._id);
-    api.likeCard(card._id, !isLiked)
-      .then((newCard) => {
-        const newCards = cards.map(c => c._id === card._id ? newCard : c);
-        setCards(newCards);
-      })
-  }
-
-  function handleCardDelete(card) {
-    api.deleteCard(card._id)
-      .then(() => {
-        const newCards = cards.filter(c => c._id !== card._id);
-        setCards(newCards);
-      })
-  }
-
-
-  React.useEffect(() => {
-    api.getInitialCards()
-      .then(cards => {
-        setCards(cards);
-      })
-      .catch((error) => console.error(error));
-  });
 
   return (
     <main className="main">
@@ -54,7 +25,7 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
       </section>
       <section className="elements">
         {cards.map((card, i) =>
-          <Card key={card._id} onCardClick={onCardClick} onCardLike={handleLikeCard} onCardDelete={handleCardDelete} card={card}/>
+          <Card key={card._id} onCardClick={onCardClick} onCardLike={onCardLike} onCardDelete={onCardDelete} card={card}/>
         )}
       </section>
     </main>
